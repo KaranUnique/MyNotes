@@ -1,0 +1,56 @@
+body {
+    font-family: 'Poppins', sans-serif !important;
+    color: #E0E0E0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: linear-gradient(135deg, #1A1A2E, #16213E, #0F3460);
+    background-size: 100% 100%;
+    /* use 400% 400% for movement and transition*/
+    /* animation: gradientMove 10s ease infinite; use for smooth transition */
+}
+
+.hover-underline:hover {
+    text-decoration: underline;
+    text-decoration-color: lavender;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+
+}
+.card-color {
+    background: linear-gradient(45deg, #2A3B47, #3E515B);
+    color: white !important;
+    border: 1px solid rgba(123, 47, 238, 0.3) !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.search-color {
+    background: linear-gradient(to right, #2C3E50, #34495E);
+    color: white !important;
+}
+
+.navbar-first {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-color {
+    background: rgba(10, 25, 47, 0.9);
+    color: #FFFFFF !important;
+    padding: 15px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    color: white !important;
+}
+
+.selected-color{
+ background-color:#16213E;
+ border: #E0E0E0 1px solid;
+}
+
+/* @keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; } used for movement and transition - 400% 400% 
+} */
