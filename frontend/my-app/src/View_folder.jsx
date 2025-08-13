@@ -50,49 +50,7 @@ export function View_folder() {
                         <p>No files in this folder</p>
                     )}
                 </div>
-            </div>            # Dependencies
-            node_modules/
-            
-            # Environment variables
-            .env
-            .env.local
-            .env.production
-            
-            # Build outputs
-            dist/
-            build/
-            
-            # Logs
-            *.log
-            
-            # OS files
-            .DS_Store
-            Thumbs.db
-            
-            # IDE files
-            .vscode/
-            .idea/            # Dependencies
-            node_modules/
-            
-            # Environment variables
-            .env
-            .env.local
-            .env.production
-            
-            # Build outputs
-            dist/
-            build/
-            
-            # Logs
-            *.log
-            
-            # OS files
-            .DS_Store
-            Thumbs.db
-            
-            # IDE files
-            .vscode/
-            .idea/
+            </div>
         </>
     );
 }

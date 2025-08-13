@@ -4,9 +4,19 @@ export function Note() {
 
     const [note, setNote] = useState("");
     const [filename, setfilename] = useState("");
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [category, setCategory] = useState("personal");
     const [error, seterror] = useState(false);
     const [success, setsuccess] = useState(false);
     const [loading, setloading] = useState(false);
+    
+    const toggleFavorite = () => {
+        setIsFavorite(!isFavorite);
+    }
+
+    const handleCategoryChange = (newCategory) => {
+        setCategory(newCategory);
+    }
     const handlesave = async (e) => {
 
         e.preventDefault();
@@ -25,7 +35,9 @@ export function Note() {
                 },
                 body: JSON.stringify({
                     content: note,
-                    filename: filename
+                    filename: filename,
+                    isFavorite: isFavorite,
+                    category: category
                 })
             }
             )
@@ -54,16 +66,61 @@ export function Note() {
                 <div className="d-flex">
                     <form onSubmit={handlesave} className="d-flex flex-row ">
                         <div className="mt-5">
-                            <div className="d-flex align-items-center gap-3">
-                                <input type="text" placeholder="File name" className="form-control my-2"
+                            {/* Header with filename, star, and category */}
+                            <div className="d-flex align-items-center gap-3 mb-3">
+                                <input type="text" placeholder="File name" className="form-control"
                                     onChange={(e) => {
                                         setfilename(e.target.value);
                                         seterror(false);
                                     }
                                     }
                                     style={{ width: "200px" }}
-                                ></input>
-                                {error && <p className="text-danger">*File name already exsits</p>}
+                                />
+                                
+                                {/* Star Favorite Button */}
+                                <button 
+                                    type="button" 
+                                    className="btn favorite-btn"
+                                    onClick={toggleFavorite}
+                                    title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                                >
+                                    <i className={`bi ${isFavorite ? 'bi-star-fill' : 'bi-star'}`}></i>
+                                </button>
+
+                                {/* Category Dropdown */}
+                                <div className="dropdown">
+                                    <button 
+                                        className="btn category-btn dropdown-toggle" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false"
+                                    >
+                                        <i className={`bi ${category === 'work' ? 'bi-briefcase' : 'bi-house'} me-2`}></i>
+                                        {category === 'work' ? 'Work' : 'Personal'}
+                                    </button>
+                                    <ul className="dropdown-menu category-dropdown">
+                                        <li>
+                                            <button 
+                                                className="dropdown-item" 
+                                                type="button"
+                                                onClick={() => handleCategoryChange('personal')}
+                                            >
+                                                <i className="bi bi-house me-2"></i>Personal
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button 
+                                                className="dropdown-item" 
+                                                type="button"
+                                                onClick={() => handleCategoryChange('work')}
+                                            >
+                                                <i className="bi bi-briefcase me-2"></i>Work
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                {error && <p className="text-danger mb-0">*File name already exists</p>}
                             </div>
 
                             <textarea className="form-control" rows={25} cols={120}

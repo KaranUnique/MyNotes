@@ -10,13 +10,33 @@ import { Folder } from '../Folder'
 import { View_folder } from './view_folder'
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
     <Router>
-      <Navbar/>
+      <Navbar onSearch={handleSearch} onToggleMobileMenu={toggleMobileMenu}/>
       <Routes>
-        <Route path='/' element={<Content/>} />
+        <Route path='/' element={
+          <Content 
+            searchTerm={searchTerm} 
+            isMobileMenuOpen={isMobileMenuOpen}
+            onCloseMobileMenu={closeMobileMenu}
+          />
+        } />
         <Route path='/Note' element={<Note/>}/>
         <Route path='/note/:id'element={<ViewEdit/>}/>
         <Route path='/Folder' element={<Folder/>}/>

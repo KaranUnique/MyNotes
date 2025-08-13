@@ -9,7 +9,22 @@ const noteSchema = new mongoose.Schema({
     file: {
         type: String,
         required: true
+    },
+    isFavorite: {
+        type: Boolean,
+        default: false
+    },
+    category: {
+        type: String,
+        enum: ['personal', 'work'],
+        default: 'personal'
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
+}, {
+    timestamps: true
 })
 
 

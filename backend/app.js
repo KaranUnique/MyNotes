@@ -14,9 +14,30 @@ const Notes = require('./models/NoteSchema');
 const Folder = require('./models/FolderSchema');
 
 app.get('/api/note-viewedit', async (req, res) => {
-
-    const Notedata = await Notes.find();
+    // Only get non-deleted notes
+    const Notedata = await Notes.find({ isDeleted: { $ne: true } });
     res.status(200).json(Notedata); // now fetch the data in frontend using fetch
+})
+
+// Get favorite notes
+app.get('/api/notes/favorites', async (req, res) => {
+    try {
+        const favoriteNotes = await Notes.find({ isFavorite: true, isDeleted: { $ne: true } });
+        res.status(200).json(favoriteNotes);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
+// Get notes by category
+app.get('/api/notes/category/:category', async (req, res) => {
+    const { category } = req.params;
+    try {
+        const categoryNotes = await Notes.find({ category: category, isDeleted: { $ne: true } });
+        res.status(200).json(categoryNotes);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 })
 app.get('/api/note-viewedit/:id', async (req, res) => {
 
@@ -34,15 +55,16 @@ app.get('/api/note-viewedit/:id', async (req, res) => {
 
 app.put('/api/note-viewedit/:id', async (req, res) => {
     const { id } = req.params;
-    const { filename, file } = req.body;
+    const { filename, file, isFavorite, category } = req.body;
 
     try {
         const updateNote = await Notes.findByIdAndUpdate(
             id,
-            { filename, file },
+            { filename, file, isFavorite, category },
             { new: true }
         );
         if (!updateNote) return res.status(404).send("Note not found");
+        res.status(200).json(updateNote);
     }
 
     catch (err) {
@@ -52,7 +74,7 @@ app.put('/api/note-viewedit/:id', async (req, res) => {
 
 app.post('/api/note-save', async (req, res, next) => {
 
-    const { filename, content } = req.body;
+    const { filename, content, isFavorite, category } = req.body;
     // console.log(req.body.content);
     // console.log(req.body.filename);
     const existingfile = await Notes.findOne({ filename });
@@ -61,7 +83,12 @@ app.post('/api/note-save', async (req, res, next) => {
     }
 
     try {
-        const note = new Notes({ filename, file: content });
+        const note = new Notes({ 
+            filename, 
+            file: content, 
+            isFavorite: isFavorite || false, 
+            category: category || 'personal' 
+        });
         await note.save();
         // console.log("post request works");
 
@@ -75,14 +102,70 @@ app.post('/api/note-save', async (req, res, next) => {
 app.delete('/api/note-viewedit/:id', async (req, res, next) => {
     const { id } = req.params;
     try {
-        const note = await Notes.findByIdAndDelete(id);
+        // Soft delete - mark as deleted instead of removing from database
+        const note = await Notes.findByIdAndUpdate(
+            id,
+            { isDeleted: true },
+            { new: true }
+        );
 
         if (!note) return res.status(404).send("File not found");
 
-        res.status(200).send("page is deleted");
+        res.status(200).send("File moved to trash");
     }
     catch (err) {
-        res.status(400).send("File not deleted");
+        res.status(400).send("File not moved to trash");
+    }
+})
+
+// Get trash items
+app.get('/api/notes/trash', async (req, res) => {
+    try {
+        const trashedNotes = await Notes.find({ isDeleted: true });
+        res.status(200).json(trashedNotes);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
+// Permanently delete a specific file from trash
+app.delete('/api/notes/trash/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const note = await Notes.findOneAndDelete({ _id: id, isDeleted: true });
+        if (!note) return res.status(404).send("File not found in trash");
+        res.status(200).send("File permanently deleted");
+    } catch (err) {
+        res.status(400).send("Failed to permanently delete file");
+    }
+})
+
+// Empty entire trash (delete all trashed files)
+app.delete('/api/notes/trash', async (req, res) => {
+    try {
+        const result = await Notes.deleteMany({ isDeleted: true });
+        res.status(200).json({ 
+            message: "Trash emptied successfully", 
+            deletedCount: result.deletedCount 
+        });
+    } catch (err) {
+        res.status(400).json({ error: "Failed to empty trash" });
+    }
+})
+
+// Restore a file from trash
+app.put('/api/notes/restore/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const note = await Notes.findOneAndUpdate(
+            { _id: id, isDeleted: true },
+            { isDeleted: false },
+            { new: true }
+        );
+        if (!note) return res.status(404).send("File not found in trash");
+        res.status(200).json({ message: "File restored successfully", note });
+    } catch (err) {
+        res.status(400).send("Failed to restore file");
     }
 })
 
