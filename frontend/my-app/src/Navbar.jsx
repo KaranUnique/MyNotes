@@ -24,7 +24,7 @@ export function Navbar({ onSearch, onToggleMobileMenu }) {
             >
               <i className="bi bi-list"></i>
             </button>
-            <h1 className="mb-0 app-title fs-5 fs-md-4">
+            <h1 className="mb-0 app-title fs-7 fs-md-4">
               Scribbly
             </h1>
           </div>

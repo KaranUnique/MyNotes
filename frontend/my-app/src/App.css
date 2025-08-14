@@ -13,9 +13,9 @@ body {
 /* Enhanced Navbar Styles */
 .enhanced-navbar {
     background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(15, 52, 96, 0.95)) !important;
-    backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(5px) !important;
     border-bottom: 1px solid rgba(79, 172, 254, 0.2) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
 }
 
 .app-title {
@@ -77,7 +77,7 @@ body {
     border: 1px solid rgba(79, 172, 254, 0.2) !important;
     color: white !important;
     padding: 12px 20px 12px 45px !important;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     transition: all 0.3s ease;
 }
 
@@ -89,7 +89,7 @@ body {
     background: rgba(255, 255, 255, 0.15) !important;
     border-color: rgba(79, 172, 254, 0.5) !important;
     outline: none !important;
-    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2) !important;
+    box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.1) !important;
 }
 
 .search-clear-btn {
@@ -168,7 +168,7 @@ body {
 /* Enhanced Left Sidebar */
 .left-sidebar {
     background: rgba(26, 26, 46, 0.3);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px);
     border-right: 1px solid rgba(79, 172, 254, 0.1);
     padding: 1.5rem 1rem;
     margin-left: -1px;
@@ -250,7 +250,7 @@ body {
 
 .favorite-btn i.bi-star-fill {
     color: #ffc107 !important;
-    filter: drop-shadow(0 0 4px rgba(255, 193, 7, 0.5));
+    filter: drop-shadow(0 0 2px rgba(255, 193, 7, 0.3));
 }
 
 /* Category Dropdown Button */
@@ -341,7 +341,7 @@ body {
 
 .title-icon {
     font-size: 1.5rem;
-    filter: drop-shadow(0 2px 4px rgba(79, 172, 254, 0.3));
+    filter: drop-shadow(0 1px 2px rgba(79, 172, 254, 0.2));
 }
 
 .title-icon.favorite {
@@ -529,13 +529,13 @@ body {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
 }
 
 .content-item-enhanced:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    border-color: rgba(79, 172, 254, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    border-color: rgba(79, 172, 254, 0.3);
     color: white !important;
 }
 
@@ -748,7 +748,7 @@ body {
 .favorite-indicator {
     color: #ffc107 !important;
     font-size: 0.9rem;
-    filter: drop-shadow(0 0 2px rgba(255, 193, 7, 0.5));
+    filter: drop-shadow(0 0 1px rgba(255, 193, 7, 0.3));
 }
 
 .file-meta {
@@ -824,15 +824,15 @@ body {
 /* Blue Glass Effect - Only for Right Section */
 .blue-glass-section {
     background: linear-gradient(135deg, 
-        rgba(79, 172, 254, 0.1) 0%, 
-        rgba(0, 242, 254, 0.05) 50%, 
-        rgba(26, 26, 46, 0.1) 100%) !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(79, 172, 254, 0.2) !important;
+        rgba(79, 172, 254, 0.08) 0%, 
+        rgba(0, 242, 254, 0.03) 50%, 
+        rgba(26, 26, 46, 0.08) 100%) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(79, 172, 254, 0.15) !important;
     box-shadow: 
-        0 8px 32px rgba(79, 172, 254, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        0 4px 16px rgba(79, 172, 254, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Minimal Filter Tags */
