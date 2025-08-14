@@ -59,18 +59,18 @@ export function Navbar({ onSearch, onToggleMobileMenu }) {
 
           {/* Right side: Enhanced Profile section - Hidden on small screens */}
           <div className="d-none d-md-flex align-items-center gap-3 flex-shrink-0" style={{ minWidth: '200px', justifyContent: 'flex-end' }}>
-            <div className="profile-info d-none d-lg-block">
+            {/* <div className="profile-info d-none d-lg-block">
               <p className="mb-0 user-name">Raquiel Murillo</p>
               <small className="user-status">Online</small>
-            </div>
-            <div className="profile-avatar">
+            </div> */}
+            {/* <div className="profile-avatar">
               <span>RM</span>
-            </div>
+            </div> */}
             <div className="nav-actions d-none d-lg-flex">
-              <button className="nav-btn">
+              <button className="nav-btn" onClick={() => alert('On development')}>
                 <i className="bi bi-grid-3x3-gap"></i>
               </button>
-              <button className="nav-btn">
+              <button className="nav-btn" onClick={() => alert('On development')}>
                 <i className="bi bi-gear"></i>
               </button>
             </div>

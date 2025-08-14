@@ -1,15 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+
+require("dotenv").config();
 
 const connectdb = () => {
- mongoose.connect("mongodb://localhost:27017/Notes").
-        then(() => {
-            console.log("Database created");
-        })
-        .catch(err => {
-            console.log("error occur", err);
-        })
-
-}
-
+  console.log("Connecting to:", process.env.MONGODB_URI);
+  mongoose
+    .connect(process.env.MONGODB_URI)
+    .then(() => {
+      console.log("Database created");
+    })
+    .catch((err) => {
+      console.log("error occur", err);
+    });
+};
 
 module.exports = connectdb;
