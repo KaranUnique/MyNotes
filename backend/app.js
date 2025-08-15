@@ -1,5 +1,4 @@
 const express = require('express');
-//const router = express.Router();
 const app = express();
 const cors = require("cors");
 
@@ -16,7 +15,7 @@ const Folder = require('./models/FolderSchema');
 app.get('/api/note-viewedit', async (req, res) => {
     // Only get non-deleted notes
     const Notedata = await Notes.find({ isDeleted: { $ne: true } });
-    res.status(200).json(Notedata); // now fetch the data in frontend using fetch
+    res.status(200).json(Notedata);
 })
 
 // Get favorite notes
