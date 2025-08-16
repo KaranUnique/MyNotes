@@ -26,7 +26,7 @@ export function TrashView({ trashFiles, onRefresh }) {
     const handlePermanentDelete = async (fileId) => {
         setIsDeleting(true);
         try {
-            const response = await fetch(`http://localhost:3000/api/notes/trash/${fileId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/trash/${fileId}`, {
                 method: 'DELETE'
             });
             if (response.ok) {
@@ -47,7 +47,7 @@ export function TrashView({ trashFiles, onRefresh }) {
         
         setIsEmptying(true);
         try {
-            const response = await fetch('http://localhost:3000/api/notes/trash', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/trash`, {
                 method: 'DELETE'
             });
             if (response.ok) {
@@ -64,7 +64,7 @@ export function TrashView({ trashFiles, onRefresh }) {
     const handleRestore = async (fileId) => {
         setIsRestoring(true);
         try {
-            const response = await fetch(`http://localhost:3000/api/notes/restore/${fileId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/notes/restore/${fileId}`, {
                 method: 'PUT'
             });
             if (response.ok) {
@@ -88,7 +88,7 @@ export function TrashView({ trashFiles, onRefresh }) {
         setIsDeleting(true);
         try {
             const deletePromises = selectedFiles.map(fileId =>
-                fetch(`http://localhost:3000/api/notes/trash/${fileId}`, { method: 'DELETE' })
+                fetch(`${import.meta.env.VITE_API_URL}/notes/trash/${fileId}`, { method: 'DELETE' })
             );
             await Promise.all(deletePromises);
             if (onRefresh) onRefresh();
@@ -106,7 +106,7 @@ export function TrashView({ trashFiles, onRefresh }) {
         setIsRestoring(true);
         try {
             const restorePromises = selectedFiles.map(fileId =>
-                fetch(`http://localhost:3000/api/notes/restore/${fileId}`, { method: 'PUT' })
+                fetch(`${import.meta.env.VITE_API_URL}/notes/restore/${fileId}`, { method: 'PUT' })
             );
             await Promise.all(restorePromises);
             if (onRefresh) onRefresh();

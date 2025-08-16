@@ -9,7 +9,7 @@ export function View_folder() {
 
     useEffect(() => {
         // Fetch specific folder data
-        fetch(`http://localhost:3000/api/folders/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/folders/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log("Fetched folder:", data);

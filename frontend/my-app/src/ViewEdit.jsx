@@ -12,7 +12,7 @@ export function ViewEdit() {
     const [updatefile, setupdatefile] = useState({ filename: "", file: "", isFavorite: false, category: "personal" });
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/note-viewedit/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/note-viewedit/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setfile(data);
@@ -36,7 +36,7 @@ export function ViewEdit() {
         e.preventDefault();
         setsuccess(false);
         try {
-            const response = await fetch(`http://localhost:3000/api/note-viewedit/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/note-viewedit/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

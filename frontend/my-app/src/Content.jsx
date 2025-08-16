@@ -17,7 +17,7 @@ export function Content({ searchTerm, isMobileMenuOpen, onCloseMobileMenu }) {
 
     const refreshData = () => {
         // Refresh files
-        fetch("http://localhost:3000/api/note-viewedit")
+    fetch(`${import.meta.env.VITE_API_URL}/note-viewedit`)
             .then((res) => res.json())
             .then((data) => {
                 setfiles(data);
@@ -32,7 +32,7 @@ export function Content({ searchTerm, isMobileMenuOpen, onCloseMobileMenu }) {
             });
             
         // Refresh trash
-        fetch("http://localhost:3000/api/notes/trash")
+    fetch(`${import.meta.env.VITE_API_URL}/notes/trash`)
             .then((res) => res.json())
             .then((data) => {
                 setTrashFiles(data);
@@ -42,7 +42,7 @@ export function Content({ searchTerm, isMobileMenuOpen, onCloseMobileMenu }) {
             });
             
         // Refresh folders
-        fetch("http://localhost:3000/api/folders")
+    fetch(`${import.meta.env.VITE_API_URL}/folders`)
             .then((res) => res.json())
             .then((data) => {
                 setfolders(data);

@@ -28,7 +28,7 @@ export function Note() {
             return;
         }
         try {
-            const response = await fetch("http://localhost:3000/api/note-save", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/note-save`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

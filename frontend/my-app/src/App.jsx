@@ -7,7 +7,7 @@ import { Content } from './Content'
 import { Note } from './Note'
 import { ViewEdit } from './ViewEdit'
 import { Folder } from './Folder'
-import { View_folder } from './View_folder'
+import { View_folder } from 'View_folder'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
